@@ -2,6 +2,39 @@
   <h2>Report Waste</h2>
   <a href="#report-form" class="btn-primary">Report Now</a>
 </section>
+<section id="report" class="report-section">
+  <h2>Report Waste</h2>
+  <p>Please fill out the form below to report garbage in your area:</p>
+
+  <form id="reportForm">
+    <label for="name">Your Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="location">Location / Address:</label><br>
+    <input type="text" id="location" name="location" required><br><br>
+
+    <label for="description">Waste Details:</label><br>
+    <textarea id="description" name="description" rows="4" placeholder="Describe the waste" required></textarea><br><br>
+
+    <button type="submit">Submit Report</button>
+  </form>
+</section>
+
+<style>
+  .report-section {
+    padding: 60px 50px;
+    background: #f8f9fa;
+    text-align: center;
+  }
+  .report-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #0d6efd;
+    margin-bottom: 20px;
+  }
+  #reportForm input, #report
 
 <style>
   .report-section {
