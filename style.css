@@ -1,24 +1,43 @@
 body{
     font-family: Arial, sans-serif;
-    background-color:#f4f6f8;
+    margin:0;
+    background:#f4f6f8;
+}
+
+header{
+    background:#2c7a7b;
+    color:white;
+    padding:20px;
     text-align:center;
-    padding:40px;
 }
 
-h1{
-    color:#2c7a7b;
+nav{
+    background:#1f4f50;
+    padding:10px;
+    text-align:center;
 }
 
-p{
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
     font-size:18px;
-    color:#333;
+}
+
+nav a:hover{
+    color:#ffd166;
 }
 
 .container{
+    padding:40px;
+    text-align:center;
+}
+
+.card{
     background:white;
-    padding:30px;
+    padding:20px;
+    margin:20px auto;
+    width:60%;
     border-radius:10px;
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
-    width:60%;
-    margin:auto;
 }
