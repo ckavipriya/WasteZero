@@ -1,18 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Smart Waste Management</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Waste Management System</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
 
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+}
+
+/* Header */
+
+header{
+    background:#2c7a7b;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+nav{
+    background:#1f4e5f;
+    padding:10px;
+    text-align:center;
+}
+
+nav a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#ffd166;
+}
+
+/* Hero section */
+
+.hero{
+    background:url("https://images.unsplash.com/photo-1503596476-1c12a8ba09a9") center/cover no-repeat;
+    height:400px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    text-align:center;
+}
+
+.hero h1{
+    background:rgba(0,0,0,0.5);
+    padding:20px;
+    border-radius:10px;
+}
+
+/* Sections */
+
+section{
+    padding:40px;
+    text-align:center;
+}
+
+section h2{
+    color:#2c7a7b;
+}
+
+/* Images */
+
+.project-img{
+  width:90%;
+  max-width:800px;
+  height:auto;
+  margin:20px auto;
+  display:block;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Cards */
+
+.container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+width:250px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* Footer */
+
+footer{
+background:#1f4e5f;
+color:white;
+text-align:center;
+padding:15px;
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
-
-<h1>Smart Waste Management</h1>
+<h1>Smart Waste Management System</h1>
+<p>Design and Development using Web Technologies</p>
+</header>
 
 <nav>
 <a href="#">Home</a>
@@ -22,90 +124,62 @@
 <a href="#contact">Contact</a>
 </nav>
 
-</header>
-
-
-<section class="hero">
-
-<h2>Smart Waste Management System</h2>
-<p>Using Web Technologies to Build Cleaner and Greener Cities</p>
-
-</section>
-
+<div class="hero">
+<h1>Creating a Cleaner and Smarter Environment</h1>
+</div>
 
 <section id="about">
-
 <h2>About the Project</h2>
-
 <p>
-The Smart Waste Management System is designed to improve waste collection
-efficiency using modern web technologies. It helps monitor waste levels,
-optimize garbage collection routes and promote eco-friendly waste disposal.
+The Smart Waste Management System is designed to improve waste collection efficiency using
+modern web technologies. It helps monitor waste levels, optimize collection routes,
+and promote a cleaner environment.
 </p>
-
 </section>
-
 
 <section id="features">
+<h2>Project Features</h2>
 
-<h2>Key Features</h2>
-
-<div class="cards">
+<div class="container">
 
 <div class="card">
-<h3>Smart Bin Monitoring</h3>
-<p>Detect waste level in bins to prevent overflow.</p>
+<h3>Smart Monitoring</h3>
+<p>Tracks waste levels in bins using sensors.</p>
 </div>
 
 <div class="card">
-<h3>Route Optimization</h3>
-<p>Improve waste collection routes for efficiency.</p>
+<h3>Efficient Collection</h3>
+<p>Optimizes garbage collection routes.</p>
 </div>
 
 <div class="card">
-<h3>Eco Friendly</h3>
-<p>Encourage recycling and proper waste segregation.</p>
-</div>
-
-<div class="card">
-<h3>Real Time Updates</h3>
-<p>Monitor waste data through a web dashboard.</p>
+<h3>Environment Friendly</h3>
+<p>Promotes recycling and waste segregation.</p>
 </div>
 
 </div>
 
 </section>
-
 
 <section id="gallery">
+<h2>Project Images</h2>
 
-<h2>Waste Management Gallery</h2>
+<img src="https://images.unsplash.com/photo-1604186838309-c6715f0d3c66" class="project-img">
 
-<div class="gallery">
+<img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952" class="project-img">
 
-<img src="https://images.unsplash.com/photo-1595274459742-4a41d35784b6">
-<img src="https://images.unsplash.com/photo-1581579186986-ef5f8f1b2b4b">
-<img src="https://images.unsplash.com/photo-1503596476-1c12a8ba09a9">
-
-</div>
+<img src="https://images.unsplash.com/photo-1503596476-1c12a8ba09a9" class="project-img">
 
 </section>
-
 
 <section id="contact">
-
 <h2>Contact</h2>
-
-<p>Email: smartwaste@gmail.com</p>
-<p>Phone: +91 XXXXX XXXXX</p>
-
+<p>Project developed by: <b>Kavi</b></p>
+<p>Department: Computer and Communication Engineering</p>
 </section>
 
-
 <footer>
-
-<p>© 2026 Smart Waste Management System</p>
-
+<p>© 2026 Smart Waste Management System Project</p>
 </footer>
 
 </body>
