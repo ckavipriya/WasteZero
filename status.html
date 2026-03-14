@@ -1,38 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Waste Bin Status</title>
+
 <link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+
 </head>
 
 <body>
 
-<h1>Waste Bin Status</h1>
+<header>
+<h2>WasteZero</h2>
 
-<table border="1">
+<nav>
+<a href="index.html">Home</a>
+<a href="status.html">Bin Status</a>
+<a href="contact.html">Report Issue</a>
+</nav>
+</header>
 
-<tr>
-<th>Bin Location</th>
-<th>Status</th>
-</tr>
 
-<tr>
-<td>City Center</td>
-<td id="bin1">Loading...</td>
-</tr>
+<h1 class="title">Waste Bin Monitoring Dashboard</h1>
 
-<tr>
-<td>Bus Stand</td>
-<td id="bin2">Loading...</td>
-</tr>
 
-<tr>
-<td>Market Area</td>
-<td id="bin3">Loading...</td>
-</tr>
+<div class="container">
 
-</table>
+<div class="bin-card">
+
+<h3>City Center Bin</h3>
+
+<div class="progress">
+<div class="level high">80%</div>
+</div>
+
+<p>Status: Nearly Full ⚠️</p>
+
+</div>
+
+
+<div class="bin-card">
+
+<h3>Bus Stand Bin</h3>
+
+<div class="progress">
+<div class="level medium">50%</div>
+</div>
+
+<p>Status: Half Filled</p>
+
+</div>
+
+
+<div class="bin-card">
+
+<h3>Market Area Bin</h3>
+
+<div class="progress">
+<div class="level low">20%</div>
+</div>
+
+<p>Status: Empty</p>
+
+</div>
+
+</div>
 
 </body>
 </html>
