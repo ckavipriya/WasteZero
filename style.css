@@ -1,29 +1,70 @@
 body{
 font-family: Arial;
 margin:0;
-background:#f4f4f4;
-text-align:center;
+background:#f5f7fb;
 }
 
 header{
-background:#2e7d32;
+display:flex;
+justify-content:space-between;
+padding:20px 60px;
+background:#111827;
 color:white;
-padding:20px;
 }
 
 nav a{
-margin:15px;
+margin-left:20px;
 color:white;
 text-decoration:none;
-font-weight:bold;
 }
 
-.hero{
-padding:40px;
+.title{
+text-align:center;
+margin-top:40px;
 }
 
-table{
-margin:auto;
+.container{
+display:flex;
+justify-content:center;
+gap:40px;
+margin-top:40px;
+}
+
+.bin-card{
 background:white;
-padding:20px;
+padding:30px;
+border-radius:10px;
+width:220px;
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.progress{
+background:#eee;
+height:20px;
+border-radius:20px;
+overflow:hidden;
+margin:15px 0;
+}
+
+.level{
+height:100%;
+text-align:center;
+color:white;
+font-size:12px;
+}
+
+.high{
+width:80%;
+background:red;
+}
+
+.medium{
+width:50%;
+background:orange;
+}
+
+.low{
+width:20%;
+background:green;
 }
