@@ -4,10 +4,6 @@ const asyncHandler = require('../utils/asyncHandler');
 const generateToken = require('../utils/generateToken');
 const User = require('../models/User');
 const { users: mockUsers, toSafeUser } = require('../utils/mockStore');
-
-// @desc    Register new user
-// @route   POST /api/auth/register
-// @access  Public
 const register = asyncHandler(async (req, res) => {
   const { name, username, email, password, role, location, skills, bio } = req.body;
   const allowedRoles = ['volunteer', 'ngo', 'admin', 'agent'];
@@ -24,7 +20,6 @@ const register = asyncHandler(async (req, res) => {
       const field = existing.email.toLowerCase() === cleanEmail ? 'email' : 'username';
       return res.status(409).json({ success: false, message: `That ${field} is already registered` });
     }
-
     const newUser = {
       _id: 'mock_user_' + Date.now(),
       name: cleanName,
@@ -43,7 +38,6 @@ const register = asyncHandler(async (req, res) => {
     const token = generateToken(newUser._id, newUser.role);
     return res.status(201).json({ success: true, message: 'Account created successfully', token, user: toSafeUser(newUser) });
   }
-
   const existing = await User.findOne({
     $or: [{ email: cleanEmail }, { username: cleanUsername }],
   });
@@ -51,7 +45,6 @@ const register = asyncHandler(async (req, res) => {
     const field = existing.email.toLowerCase() === cleanEmail ? 'email' : 'username';
     return res.status(409).json({ success: false, message: `That ${field} is already registered` });
   }
-
   const user = await User.create({
     name: cleanName,
     username: cleanUsername,
@@ -62,14 +55,10 @@ const register = asyncHandler(async (req, res) => {
     skills: Array.isArray(skills) ? skills : [],
     bio: bio || '',
   });
-
   const token = generateToken(user._id, user.role);
   res.status(201).json({ success: true, message: 'Account created successfully', token, user: user.toSafeObject() });
 });
 
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
 const login = asyncHandler(async (req, res) => {
   const rawId = req.body.username || req.body.email || '';
   const identifier = rawId.trim().toLowerCase();
@@ -122,9 +111,6 @@ const login = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'Login successful', token, user: user.toSafeObject() });
 });
 
-// @desc    Get current logged-in user
-// @route   GET /api/auth/me
-// @access  Private
 const getMe = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, user: req.user.toSafeObject() });
 });
