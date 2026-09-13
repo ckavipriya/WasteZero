@@ -1,0 +1,6 @@
+{
+  "name": "WasteZero",
+  "description": "Smart waste pickup & recycling platform connecting volunteers, NGOs, and administrators",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
