@@ -8,9 +8,6 @@ const emitToUser = (req, userId, event, payload) => {
   if (io) io.to(`user:${userId}`).emit(event, payload);
 };
 
-// @desc    Get list of conversations (most recent message per contact)
-// @route   GET /api/messages/conversations
-// @access  Private
 const getConversations = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     return res.status(200).json({ success: true, conversations: [] });
@@ -49,9 +46,7 @@ const getConversations = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, conversations });
 });
 
-// @desc    Get message thread with a specific user
-// @route   GET /api/messages/:userId
-// @access  Private
+
 const getThread = asyncHandler(async (req, res) => {
   const otherUserId = req.params.userId;
   if (mongoose.connection.readyState !== 1) {
@@ -74,9 +69,6 @@ const getThread = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, messages });
 });
 
-// @desc    Send a message (also broadcast via socket.io from the socket handler)
-// @route   POST /api/messages
-// @access  Private
 const sendMessage = asyncHandler(async (req, res) => {
   const { receiverId, content } = req.body;
   if (!content || !content.trim()) {
