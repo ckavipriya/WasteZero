@@ -75,6 +75,7 @@ const getDashboard = asyncHandler(async (req, res) => {
       co2SavedKg: +totalCO2.toFixed(2),
       volunteerHours,
     },
+    
     recyclingBreakdown: breakdownPct,
     upcomingPickups,
     volunteerOpportunities: opportunities,
