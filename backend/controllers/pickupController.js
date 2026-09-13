@@ -13,9 +13,6 @@ const emitToUser = (req, userId, event, payload) => {
   if (io) io.to(`user:${userId}`).emit(event, payload);
 };
 
-// @desc    Schedule a new pickup (auto-assigns best agent)
-// @route   POST /api/pickups
-// @access  Private
 const createPickup = asyncHandler(async (req, res) => {
   const { category, weightEstimateKg, address, coordinates, scheduledTime, notes, photos } = req.body;
 
@@ -91,9 +88,6 @@ const createPickup = asyncHandler(async (req, res) => {
   res.status(201).json({ success: true, message: 'Pickup scheduled successfully', pickup: populated });
 });
 
-// @desc    Get pickups (own for volunteers, assigned for agents, all for admin)
-// @route   GET /api/pickups
-// @access  Private
 const getPickups = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     let result = [...mockPickups];
@@ -121,9 +115,6 @@ const getPickups = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, count: pickups.length, pickups });
 });
 
-// @desc    Get single pickup
-// @route   GET /api/pickups/:id
-// @access  Private
 const getPickupById = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     const pickup = mockPickups.find((p) => p._id === req.params.id) || mockPickups[0];
@@ -143,9 +134,6 @@ const getPickupById = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, pickup });
 });
 
-// @desc    Update pickup status (agent/admin) and log waste stats on completion
-// @route   PUT /api/pickups/:id/status
-// @access  Private (agent, admin)
 const updatePickupStatus = asyncHandler(async (req, res) => {
   const { status, actualWeightKg } = req.body;
   const validStatuses = ['pending', 'assigned', 'in-progress', 'completed', 'cancelled'];
@@ -183,9 +171,7 @@ const updatePickupStatus = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'Pickup status updated', pickup });
 });
 
-// @desc    Cancel own pickup
-// @route   DELETE /api/pickups/:id
-// @access  Private (owner or admin)
+
 const cancelPickup = asyncHandler(async (req, res) => {
   const pickup = await Pickup.findById(req.params.id);
   if (!pickup) return res.status(404).json({ success: false, message: 'Pickup not found' });
