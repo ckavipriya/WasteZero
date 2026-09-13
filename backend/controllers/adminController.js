@@ -6,7 +6,6 @@ const Pickup = require('../models/Pickup');
 const Application = require('../models/Application');
 const AdminLog = require('../models/AdminLog');
 const { users: mockUsers, opportunities: mockOpps, pickups: mockPickups, applications: mockApps, adminLogs: mockLogs, toSafeUser } = require('../utils/mockStore');
-
 const getStats = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     return res.status(200).json({
@@ -62,7 +61,6 @@ const getAllUsers = asyncHandler(async (req, res) => {
     }
     return res.status(200).json({ success: true, count: result.length, users: result });
   }
-
   const filter = {};
   if (req.query.role) filter.role = req.query.role;
   if (req.query.search) {
