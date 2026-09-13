@@ -12,7 +12,8 @@ const applicationSchema = new mongoose.Schema(
       default: 'pending',
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true 
+  }
 );
-
 module.exports = mongoose.model('Application', applicationSchema);
