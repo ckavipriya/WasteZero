@@ -5,9 +5,7 @@ const Application = require('../models/Application');
 const AdminLog = require('../models/AdminLog');
 const { opportunities: mockOpps } = require('../utils/mockStore');
 
-// @desc    Create opportunity (NGO/Admin)
-// @route   POST /api/opportunities
-// @access  Private (ngo, admin)
+
 const createOpportunity = asyncHandler(async (req, res) => {
   const { title, description, requiredSkills, wasteTypes, duration, date, location, imageUrl, spotsAvailable } = req.body;
 
@@ -47,9 +45,6 @@ const createOpportunity = asyncHandler(async (req, res) => {
   res.status(201).json({ success: true, message: 'Opportunity created successfully', opportunity });
 });
 
-// @desc    List opportunities with search/filter
-// @route   GET /api/opportunities
-// @access  Private
 const getOpportunities = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     let result = [...mockOpps];
@@ -83,9 +78,7 @@ const getOpportunities = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, count: opportunities.length, opportunities });
 });
 
-// @desc    Get single opportunity
-// @route   GET /api/opportunities/:id
-// @access  Private
+
 const getOpportunityById = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     const opp = mockOpps.find((o) => o._id === req.params.id) || mockOpps[0];
@@ -100,9 +93,7 @@ const getOpportunityById = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, opportunity, applicationCount });
 });
 
-// @desc    Update opportunity
-// @route   PUT /api/opportunities/:id
-// @access  Private (owner ngo, admin)
+
 const updateOpportunity = asyncHandler(async (req, res) => {
   const opportunity = await Opportunity.findById(req.params.id);
   if (!opportunity) return res.status(404).json({ success: false, message: 'Opportunity not found' });
@@ -120,9 +111,7 @@ const updateOpportunity = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'Opportunity updated successfully', opportunity });
 });
 
-// @desc    Delete opportunity
-// @route   DELETE /api/opportunities/:id
-// @access  Private (owner ngo, admin)
+
 const deleteOpportunity = asyncHandler(async (req, res) => {
   const opportunity = await Opportunity.findById(req.params.id);
   if (!opportunity) return res.status(404).json({ success: false, message: 'Opportunity not found' });
