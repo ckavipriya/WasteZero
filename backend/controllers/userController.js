@@ -7,7 +7,7 @@ const { users: mockUsers, toSafeUser } = require('../utils/mockStore');
 const updateProfile = asyncHandler(async (req, res) => {
   const { name, email, location, skills, bio, address, avatarUrl, role, phone, preferredContactMethod } = req.body;
 
-  if (mongoose.connection.readyState !== 1) {
+  if (mongoose.connection.readyState !==1){
     const user = mockUsers.find((u) => u._id === req.user._id) || req.user;
     if (name !== undefined) user.name = name;
     if (email !== undefined) user.email = email.toLowerCase();
