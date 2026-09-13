@@ -11,9 +11,6 @@ const emitToUser = (req, userId, event, payload) => {
   if (io) io.to(`user:${userId}`).emit(event, payload);
 };
 
-// @desc    Apply to an opportunity
-// @route   POST /api/applications
-// @access  Private (volunteer)
 const applyToOpportunity = asyncHandler(async (req, res) => {
   const { opportunityId, message } = req.body;
 
@@ -62,9 +59,7 @@ const applyToOpportunity = asyncHandler(async (req, res) => {
   res.status(201).json({ success: true, message: 'Application submitted successfully', application });
 });
 
-// @desc    List applications (mine as volunteer, or for my opportunities as ngo, or all as admin)
-// @route   GET /api/applications
-// @access  Private
+
 const getApplications = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     return res.status(200).json({ success: true, count: mockApps.length, applications: mockApps });
@@ -87,9 +82,6 @@ const getApplications = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, count: applications.length, applications });
 });
 
-// @desc    Update application status (accept/reject) - NGO who owns the opportunity, or admin
-// @route   PUT /api/applications/:id
-// @access  Private (ngo, admin)
 const updateApplicationStatus = asyncHandler(async (req, res) => {
   const { status } = req.body;
   if (!['pending', 'accepted', 'rejected'].includes(status)) {
@@ -102,7 +94,6 @@ const updateApplicationStatus = asyncHandler(async (req, res) => {
   if (application.opportunity.ngo.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
     return res.status(403).json({ success: false, message: 'Not authorized to update this application' });
   }
-
   application.status = status;
   await application.save();
 
