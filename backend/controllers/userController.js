@@ -4,9 +4,6 @@ const asyncHandler = require('../utils/asyncHandler');
 const User = require('../models/User');
 const { users: mockUsers, toSafeUser } = require('../utils/mockStore');
 
-// @desc    Update own profile
-// @route   PUT /api/users/profile
-// @access  Private
 const updateProfile = asyncHandler(async (req, res) => {
   const { name, email, location, skills, bio, address, avatarUrl, role, phone, preferredContactMethod } = req.body;
 
@@ -46,9 +43,7 @@ const updateProfile = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'Profile updated successfully', user: user.toSafeObject() });
 });
 
-// @desc    Change own password
-// @route   PUT /api/users/password
-// @access  Private
+
 const changePassword = asyncHandler(async (req, res) => {
   const { currentPassword, newPassword } = req.body;
 
@@ -63,9 +58,7 @@ const changePassword = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'Password changed successfully' });
 });
 
-// @desc    Get a user's public profile by id
-// @route   GET /api/users/:id
-// @access  Private
+
 const getUserById = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     const user = mockUsers.find((u) => u._id === req.params.id) || mockUsers[0];
@@ -78,9 +71,6 @@ const getUserById = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, user: user.toSafeObject() });
 });
 
-// @desc    List users (for messaging / agent selection etc.)
-// @route   GET /api/users?role=agent
-// @access  Private
 const listUsers = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     let result = mockUsers.map(toSafeUser);
