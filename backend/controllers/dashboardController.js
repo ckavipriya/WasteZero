@@ -7,9 +7,6 @@ const Application = require('../models/Application');
 const User = require('../models/User');
 const { opportunities: mockOpps, pickups: mockPickups } = require('../utils/mockStore');
 
-// @desc    Get dashboard summary for the logged-in user
-// @route   GET /api/dashboard
-// @access  Private
 const getDashboard = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     return res.status(200).json({
@@ -84,5 +81,4 @@ const getDashboard = asyncHandler(async (req, res) => {
     volunteerOpportunities: opportunities,
   });
 });
-
 module.exports = { getDashboard };
