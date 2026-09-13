@@ -6,7 +6,6 @@ const Opportunity = require('../models/Opportunity');
 const Application = require('../models/Application');
 const User = require('../models/User');
 const { opportunities: mockOpps, pickups: mockPickups } = require('../utils/mockStore');
-
 const getDashboard = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     return res.status(200).json({
