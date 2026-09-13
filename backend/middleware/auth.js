@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 const asyncHandler = require('../utils/asyncHandler');
 const User = require('../models/User');
 const { users: mockUsers, toSafeUser } = require('../utils/mockStore');
-
-// Verifies the JWT from the Authorization header and attaches req.user.
 const protect = asyncHandler(async (req, res, next) => {
   let token;
   const authHeader = req.headers.authorization;
@@ -46,7 +44,7 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 });
 
-// Restricts a route to specific roles, e.g. authorize('admin', 'ngo')
+
 const authorize = (...roles) => (req, res, next) => {
   if (!req.user || !roles.includes(req.user.role)) {
     return res.status(403).json({
