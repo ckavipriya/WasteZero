@@ -7,9 +7,6 @@ const Application = require('../models/Application');
 const AdminLog = require('../models/AdminLog');
 const { users: mockUsers, opportunities: mockOpps, pickups: mockPickups, applications: mockApps, adminLogs: mockLogs, toSafeUser } = require('../utils/mockStore');
 
-// @desc    Platform-wide stats for admin dashboard
-// @route   GET /api/admin/stats
-// @access  Private (admin)
 const getStats = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     return res.status(200).json({
@@ -27,7 +24,6 @@ const getStats = asyncHandler(async (req, res) => {
       },
     });
   }
-
   const [totalUsers, totalVolunteers, totalNgos, totalOpportunities, openOpportunities, totalPickups, completedPickups, totalApplications, suspendedUsers] =
     await Promise.all([
       User.countDocuments(),
@@ -56,10 +52,6 @@ const getStats = asyncHandler(async (req, res) => {
     },
   });
 });
-
-// @desc    List all users for admin management
-// @route   GET /api/admin/users
-// @access  Private (admin)
 const getAllUsers = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState !== 1) {
     let result = mockUsers.map(toSafeUser);
@@ -83,9 +75,6 @@ const getAllUsers = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, count: users.length, users });
 });
 
-// @desc    Suspend or unsuspend a user
-// @route   PUT /api/admin/users/:id/suspend
-// @access  Private (admin)
 const toggleSuspendUser = asyncHandler(async (req, res) => {
   const { suspend, reason } = req.body;
   const user = await User.findById(req.params.id);
@@ -109,9 +98,6 @@ const toggleSuspendUser = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: `User ${suspend ? 'suspended' : 'reinstated'} successfully`, user: user.toSafeObject() });
 });
 
-// @desc    Delete a user account
-// @route   DELETE /api/admin/users/:id
-// @access  Private (admin)
 const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
   if (!user) return res.status(404).json({ success: false, message: 'User not found' });
@@ -130,17 +116,14 @@ const deleteUser = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, message: 'User deleted successfully' });
 });
 
-// @desc    Get admin action logs
-// @route   GET /api/admin/logs
-// @access  Private (admin)
+
+
 const getLogs = asyncHandler(async (req, res) => {
   const logs = await AdminLog.find().populate('admin', 'name username').sort({ timestamp: -1 }).limit(200);
   res.status(200).json({ success: true, logs });
 });
 
-// @desc    Downloadable activity report (JSON; frontend can export as CSV)
-// @route   GET /api/admin/report
-// @access  Private (admin)
+
 const getReport = asyncHandler(async (req, res) => {
   const [users, opportunities, pickups, applications] = await Promise.all([
     User.find().select('name username email role createdAt isSuspended'),
